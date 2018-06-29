@@ -1,0 +1,62 @@
+{% extends "numerique/base.html" %}
+{% load staticfiles %}
+{% block title %}reseau et telecom {% endblock %}
+
+{% block content %}
+    <br><br></div>
+    <div class="row" >
+
+        <div class="col-sm-4" style="background-color:#818281">
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In hac habitasse platea
+                dictumst. Suspendisse fermentum. Mauris et pede. Cras facilisis felis sit a
+                met lorem. Integer accumsan. Aliquam justo lectus, iaculis a, auctor sed,
+                congue in, nisl. Mauris et pede. Pellentesque convallis dolor vel libero.
+                Aenean ligula. Etiam pharetra lacus sed velit imperdiet bibendum. Pellentesque
+                convallis dolor vel libero.
+                Cras gravida. Pellentesque viverra dolor non nunc. Donec rutrum venenatis dui.
+                Proin diam augue, semper vitae, varius et, viverra id, felis. Vivamus quis mi.
+                Mauris ac massa vestibulum nisl facilisis viverra. Pellentesque ac
+                turpis. Suspendisse lectus. Nam pharetra. Curabitur accumsan felis in erat.
+                Curabitur risus urna, placerat et, luctus pulvinar, auctor vel, orci.
+                Pellentesque convallis dolor vel libero. In hac habitasse platea dictumst.
+                Vivamus posuere, ante eu tempor dictum, felis nibh facilisis sem, eu auctor
+                metus nulla non lorem.
+
+            </p>
+        </div>
+
+        <div class="col-sm-8">
+            <br>
+            {% for item in list_books %}
+                <div class="row pull-left">
+                    <div class="col-sm-6">
+                        <img src="{{ MEDIA_URL }}images/{{ item.imagelink }}" class="img-rounded" width="200" height="350"/>
+                        <a href="{{ item.url }}"><span class="h4" style="background:black;color:#fff">Download</span></a>
+                    </div><br><br>
+                </div>
+            {% endfor %}
+
+            <div class="pagination" style="background-color:#000;color:white">
+                <span class="step-links">
+                    {% if list_books.has_previous %}
+                        <a href="?page=1">&laquo; Debut &nbsp;</a>
+                        <a href="?page={{ list_books.previous_page_number }}">Precedent &nbsp;</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page{{ list_books.number }} of {{ list_books.paginator.num_pages }}&nbsp;
+                    </span>
+
+                    {% if list_books.has_next %}
+                        <a href="?page={{ list_books.next_page_number }}">Suivant &nbsp;</a>
+                        <a href="?page={{ list_books.paginator.num_pages }}">Fin &raquo;</a>
+                    {% endif %}
+
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <!--<p class="header">Bienvenue dans la section programmantion</p>-->
+{% endblock %}

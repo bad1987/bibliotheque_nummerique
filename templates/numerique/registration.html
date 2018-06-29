@@ -1,0 +1,16 @@
+{% extends "numerique/basePrime.html" %}
+{% load staticfiles %}
+{% block title %}Enregistrement {% endblock %}
+
+
+{% block content %}
+    <h1>Creer un compte</h1>
+
+<form action="{% url 'registration' %}" method="post" class="form-vertical register">
+    {% csrf_token %}
+    <table>
+        {{ user_form }}
+    </table>
+    <button type="submit" class="btn btn-primary">Creer mon compte</button>
+</form>
+{% endblock %}

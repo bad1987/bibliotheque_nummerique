@@ -1,0 +1,260 @@
+
+
+{% extends "numerique/base.html" %}
+{% load staticfiles %}
+{%block extra_link%}
+    <link href="{% static 'css/addfiles.css' %}" rel="stylesheet">
+{%endblock%}
+{% block title %}bibliotheque numerique {% endblock %}
+
+{% block content %}
+        <style>
+            .carousel-inner > .item > img,
+          .carousel-inner > .item > a > img {
+              width: 70%;
+              margin: auto;
+        </style>
+
+      <div class="container-fluid">
+      <div class="row">
+
+        <div id="left" class="col-sm-7 col-md-7 col-lg-7" style="font-family:Verdana,Helvetica;">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h3 class="text-center page-header h1"> bienvenue dans la bibliotheque numerique de CIS<br><br></h3>
+                        <!--<p class="text-justify h4">-->
+                            <!--Nous mettons à votre disbrsition des livres que vous pouvez consulter sans aucune restriction.<br>-->
+                            <!--Nous vous offrons egalement des videos que vous pouvez egalement consulter.-->
+                        <!--</p>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <!--<div class="row">-->
+
+                    <!--<div class="col-sm-12 col-md-6 col-lg-6">-->
+                        <!--<img src="{% static 'images/cover.jpg' %}" class="img-circle" alt="Machine learning" width="200" height="300"/>-->
+                    <!--</div>-->
+
+                    <!--<div class="col-sm-12 col-md-6 col-lg-6">-->
+                        <!--<img src="{% static 'images/covern.jpg' %}" class="img-thumbnail" alt="Computer networking" width="200" height="300"/>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+
+                    <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    {% for i in num_images %}
+                                        {% if i == 0 %}
+                                            <li data-target="#myCarousel" data-slide-to="{{ i }}" class="active"></li>
+                                        {% else %}
+                                            <li data-target="#myCarousel" data-slide-to="{{ i }}"></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+
+                                <div class="carousel-inner slide" role="listbox">
+
+                                    {% for image in images %}
+                                        {% if forloop.counter0 == 0 %}
+                                            <div class="item active">
+                                                <img class="img-responsive" src="/static/images/slide/{{ image }}">
+                                            </div>
+                                        {% else %}
+                                            <div class="item">
+                                                <img class="img-responsive" src="/static/images/slide/{{ image }}">
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </div>
+
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+
+                            </div>
+                            <!--{% for i in images %}-->
+                                <!--{{ i }}-->
+                            <!--{% endfor %}-->
+                        </div>
+                    </div>
+                        
+                </div>
+
+
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div id="right" class="col-sm-5 col-md-5 col-lg-5">
+           {% if request.user.is_superuser %}
+            <div class="container-fluid">
+
+             <!--notification sur l'ajout des livres-->
+             <div class="row">
+                 <div class="row">
+                 {% if softwareadded %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Logiciel ajoute avec succes
+                    </div>
+                     <!-- <p class="text-success">Logiciel ajoute avec succes</p> -->
+                 {%endif%}
+                {% if saved %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Document ajouté à la bibliotheque
+                    </div>
+                    <!-- <p class="text-success">Document ajouté à la bibliotheque</p> -->
+                {% else %}
+                    {% if submited %}
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Document non ajouté à la bibliotheque
+                    </div>
+                        <!-- <p class="text-warning">Document non ajouté à bibliotheque</p> -->
+                    {% endif %}
+                {% endif %}
+            </div>
+
+             <div class="col-sm-12 col-md-12 col-lg-12">
+                 <table id="choix">
+                    <tr>
+                        <td><button id="Alivre" onclick="livre();">Ajouter un livre</button></td>
+                        <td><button id="Alogiciel" onclick="logiciel();">Ajouter un logiciel</button></td>
+                    </tr>
+                </table>
+             </div>
+             <div id="livre">
+             <div class="col-sm-12 col-md-12 col-lg-12" >
+            <table id="livres">
+                <caption><span class="h3">Uploader un livre</span></caption>
+            <form method="post" enctype="multipart/form-data" onsubmit="return checklivre()">
+                {% csrf_token %}
+                <tr>
+                    <td><label>livre</label></td>
+                    <td>
+                        <input type="file" id="inputfile" name="myfile">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="parentlivre"><span id="alertlivre"></span></td>
+                </tr>
+
+                <tr>
+                <div >
+                    <td><label for="categorie">categorie</label></td>
+                    <td>
+                    <div style="color:#000000">
+                        <select id="categorie" name="categorie">
+                            <optgroup label="Technologie de l'Information & communication">
+                                <option value="Developpement d'application">Developpement d'Application</option>
+                                <option value="Reseau et Telecom">Reseau et Telecom</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </optgroup>
+                            <optgroup label="Graphisme et Technologie Multimedia">
+                                <option value="Infographie">Infographie</option>
+                                <option value="Desin Industriel">Desin Industriel</option>
+                                <option value="Montage Audio-visuel">Montage Audio-visuel</option>
+                            </optgroup>
+                            <optgroup label="Transport et Technique de Transit">
+                                <option value="Douane & Transit">Douane & Transit</option>
+                                <option value="Logistique & Transport">Logistique & Transport</option>
+                            </optgroup>
+                            <optgroup label="Techniques Industrielles">
+                                <option value="Electricite">Electricite</option>
+                                <option value="Desin Industriel">Chaudronnerie</option>
+                                <option value="Montage Audio-visuel">Soudure & Tuyautage</option>
+                                <option value="Instrumentation & Regulation">Instrumentation & Regulation</option>
+                            </optgroup>
+                            <optgroup label="Gestion et Administration des Entreprises">
+                                <option value="Comptabilite & Gestion">Comptabilite & Gestion</option>
+                                <option value="Gestion des Resources Humaines">Resources Humaines</option>
+                                <option value="Fiscalite & Audit Fiscal">Fiscalite & Audit Fiscal</option>
+                                <option value="Secretariat et Assistance de Direction">Secretariat de Direction</option>
+                                <option value="Secretariat Comptable">Secretariat Comptable</option>
+                                <option value="Marketing Communication Vente">Marketing Communication Vente</option>
+                                <option value="Banque & Microfinance">Banque & Microfinance</option>
+                            </optgroup>
+                            <optgroup label="Projets et Prevention des Risques">
+                                <option value="Montage & Gestion des Projets">Montage & Gestion des Projets</option>
+                                <option value="QHSE">QHSE</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    </td>
+                </div>
+                </tr>
+                    <tr><td colspan="2"><button type="submit" class="softbutton">Upload</button></td></tr>
+
+            </form>
+            </table>
+             </div>
+            </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div id="logiciel">
+                        <form onsubmit="return checklogiciel()" action="logiciel" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <table class="software">
+                                <caption><span class="h3">Uploader un logiciel</span></caption>
+                                <tr>
+                                    <td>logiciel</td>
+                                    <td><input type="file" name="logiciel" id="software"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="alertlogiciel"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>nom</td>
+                                    <td><input type="text" name="nom" id="nom"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><span id="alertnom"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Categorie</td>
+                                    <td><select name="categorie">
+                                        <option value="maintenance" selected="">Maintenance</option>
+                                        <option value="developpement">Developpement</option>
+                                        <option value="reseau">Reseau</option>
+                                        <option value="design">Design</option>
+                                        <option value="autre">Autre</option>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <td>Version</td>
+                                    <td><select name="version">
+                                        <option value="32 bits">32 bits</option>
+                                        <option value="64 bits">64 bits</option>
+                                    </select></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="bt"><button type="submit" class="softbutton">Upload</button></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {% endif %}
+        </div>
+
+      </div>
+      </div>
+{% endblock %}

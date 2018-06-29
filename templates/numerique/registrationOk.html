@@ -1,0 +1,9 @@
+{% extends "numerique/basePrime.html" %}
+{% load staticfiles %}
+{% block title %}Enregistrement ok {% endblock %}
+
+{% block content %}
+    <p>Votre compte a ete creeavec succes</p>
+    <p>Vous pouvez vous <a href="{% url 'userLogin' %}">connecter</a> pour profiter des fonctionalites du site</p>
+    <p>Retourner a la <a href="{% url 'index' %}">page d'accueil</a></p>
+{% endblock %}

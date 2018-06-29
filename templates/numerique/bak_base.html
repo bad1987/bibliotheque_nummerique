@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%block extra_link%}{%endblock%}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-dropdown-hover/css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-dropdown-hover/css/bootstrap-dropdownhover.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bn.css' %}" rel="stylesheet">
+    <script src="{% static 'js/addfiles.js' %}"></script>
+     <script src="{% static 'js/addfiles.js' %}" type="text/javascript"></script>
+    <title>{% block titile %}{% endblock %}</title>
+
+    <style>
+            .nv{
+                background-color:#222222;
+                color:#ffffff;
+                height: 75px;
+            }
+
+
+            .navbar-brand img{
+                width: auto;
+                height: 300%;
+                padding: 15x;
+            }
+            .mynavmenu ul li a{
+                color:#000000;
+            }
+
+            body{
+             #background-color:#21186F;
+             background-color:#323D8D;
+             color:#fff;
+            }
+
+            .register table input{
+                background-color:#000000;
+            }
+
+
+    </style>
+</head>
+<body >
+    <!--header-->
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <nav class="navbar navbar-inverse navbar-fixed-top nv">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-sm-2 col-md-3 col-lg-3">
+
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="{% url 'index' %}">
+                                    <img class="logo" src="{% static 'images/logo_cis.png' %}">
+                                </a>
+                                <a href="{% url 'index' %}" class="navbar-brand"><br>Bibliotheque Numerique</a>
+                            </div>
+
+                        </div>
+
+                            <div class="col-ms-8 col-md-6 col-lg-6">
+                                <br>
+                                <ul class="nav navbar-nav">
+                                    <li><a href="{% url 'index' %}"><span class="glyphicon glyphicon-home"></span> home</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+                                            <span class="glyphicon glyphicon-book"></span> livres <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+
+                                            <table class="table  mynavmenu" >
+                                                <tr><td>
+                                                <div class="dropdown">
+
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                   Technologie de l'Information<br> et de la Communication <span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="{% url 'maintenance' %}">Maintenance des Systemes<br> Informatiques & Reseaux</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="{% url 'programmation' %}">Developpement d'Applications<br> Informatiques & Web</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="{% url 'reseau' %}">Reseau & Telecommunications d'Entreprise</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+
+                                                <tr><td>
+                                                <div class="dropdown">
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                    Graphisme et Technologies<br> Multimedia<span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="#">Infographie Multimedia 2D/3D</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Dessin Industriel Autocad 2D/3D</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Montage Audio-visuel</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+
+                                                <tr><td>
+                                                <div class="dropdown">
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                    Transport et Techniques de<br> Transit <span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="#">Douane & Transit</a></li>
+                                                    <li><a href="#">Logistique & Gestion des Transports</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+
+                                                <tr><td>
+                                                <div class="dropdown">
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                   Gestion et Administration<br> des Entreprises <span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="#">Comptabilite Informatisee & Gestion</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Gestion des Resources Humaines</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Fiscalite & Audit Fiscal</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Secretariat Assistance de Direction</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Secretariat Comptable</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Marketing Communication Vente</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Banque & Microfinance</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+
+                                                <tr><td>
+                                                <div class="dropdown">
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                    Techniques Industrielles<span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="#">Electricite Batiment, Industrielle & Groupe Electrogene</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Chaudronnerie Industrielle</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Soudure & Tuyautage</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Instrumentation & Regulation</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+
+                                                <tr><td>
+                                                <div class="dropdown">
+                                                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                                    Projet et Prevention des<br> Risques<span class="caret"></span>
+                                                  </button>
+                                                  <ul class="dropdown-menu">
+                                                    <li><a href="#">Montage et Gestion des Projets</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">QHSE / Qualite Securite Environnement<br> - Hygiene Securite Environnement</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Soudure & Tuyautage</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Instrumentation & Regulation</a></li>
+                                                  </ul>
+                                                </div></td></tr>
+                                            </table>
+
+                                        </ul>
+
+                                    </li>
+                                    <li><a href="{% url 'displaysoftware' %}"><span class="glyphicon glyphicon-download"></span> Logiciels</a></li>
+                                    <li><a href="{% url 'video' %}"><span class="glyphicon glyphicon-facetime-video"></span> Videos</a></li>
+                                    <li><a href="{% url 'actualite' %}"><span class="glyphicon glyphicon-globe"></span> Actualite</a></li>
+                                </ul>
+
+                            </div>
+
+                            <div class="col-sm-2 col-md-3 col-lg-3">
+                                <br>
+                                <ul class="nav navbar-nav navbar-right">
+                                      {% if request.user.is_authenticated %}
+                                          <li><a href="{% url 'userLogout' %}">Logout</a></li>
+                                      {% endif %}
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 col-md-3 col-lg-3">
+            <br><br><br><br>
+        </div></div>
+
+    <!--main content-->
+    <div class="row">
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <div class="container-fluid">
+                <br><br><br>
+                <div class="row">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <br><br><br><br>
+                        <table class="table table-responsive table-bordered myaside" style="background-color:#222222">
+                            <tr><td>
+                            <div class="dropdown">
+
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                               Technologie de l'Information<br> et de la Communication <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="{% url 'maintenance' %}">Maintenance des Systemes<br> Informatiques & Reseaux</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'programmation' %}">Developpement d'Applications<br> Informatiques & Web</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'reseau' %}">Reseau & Telecommunications d'Entreprise</a></li>
+                              </ul>
+                            </div></td></tr>
+
+                            <tr><td>
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                Graphisme et Technologies<br> Multimedia<span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Infographie Multimedia 2D/3D</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Dessin Industriel Autocad 2D/3D</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Montage Audio-visuel</a></li>
+                              </ul>
+                            </div></td></tr>
+
+                            <tr><td>
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                Transport et Techniques de<br> Transit <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Douane & Transit</a></li>
+                                <li><a href="#">Logistique & Gestion des Transports</a></li>
+                              </ul>
+                            </div></td></tr>
+
+                            <tr><td>
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                               Gestion et Administration<br> des Entreprises <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Comptabilite Informatisee & Gestion</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Gestion des Resources Humaines</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Fiscalite & Audit Fiscal</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Secretariat Assistance de Direction</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Secretariat Comptable</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Marketing Communication Vente</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Banque & Microfinance</a></li>
+                              </ul>
+                            </div></td></tr>
+
+                            <tr><td>
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                Techniques Industrielles<span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electricite Batiment, Industrielle & Groupe Electrogene</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Chaudronnerie Industrielle</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Soudure & Tuyautage</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Instrumentation & Regulation</a></li>
+                              </ul>
+                            </div></td></tr>
+
+                            <tr><td>
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                                Projet et Prevention des<br> Risques<span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Montage et Gestion des Projets</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">QHSE / Qualite Securite Environnement<br> - Hygiene Securite Environnement</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Soudure & Tuyautage</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Instrumentation & Regulation</a></li>
+                              </ul>
+                            </div></td></tr>
+                        </table>
+
+                    </div>
+                    <div class="col-sm-10 col-md-10 col-lg-10">
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--footer-->
+    <div>
+
+    </div>
+
+    <!--javascript-->
+    <script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'popper/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap-dropdown-hover/js/bootstrap-dropdownhover.min.js' %}"></script>
+</body>
+</html>

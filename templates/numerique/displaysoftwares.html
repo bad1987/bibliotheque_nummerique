@@ -1,0 +1,42 @@
+{% extends "numerique/base.html" %}
+{% load staticfiles %}
+{%block extra_link%}
+    <link href="{% static 'css/addfiles.css' %}" rel="stylesheet">
+{%endblock%}
+{% block title %}logiciels {% endblock %}
+
+{% block content %}
+    <!--<br><br></div>-->
+    <div class="container-fluid">
+        <div class="row menlogi">
+            <div class="col-sm-2 col-md-2 col-lg-2 ">
+                <a href="{% url 'categorielogiciel' 'maintlogi' %}" class="btn btn-success"><span class="h3">Maintenance</span></a>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <a href="{% url 'categorielogiciel' 'reseau' %}" class="btn btn-success"><span class="h3">Reseau</span></a>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 ">
+                <a href="{% url 'categorielogiciel' 'developpement' %}" class="btn btn-success"><span class="h3">Developpement</span></a>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <a href="{%url 'categorielogiciel' 'design' %}" class="btn btn-success"><span class="h3">Design</span></a>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <a href="{% url 'categorielogiciel' 'autre' %}" class="btn btn-success"><span class="h3">Autre</span></a>
+            </div>
+        </div>
+        <br><br>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                {% for soft in softwares %}
+                    <div class="infologiciel">
+                        <span >{{ soft.nom }}</span><br>
+                        <span>Version {{ soft.version }}</span><br>
+                        <a href="download/{{ soft.url }}/{{ soft.nomFichier }}" class="btn btn-info">Download</a>
+                    </div>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+{% endblock %}
